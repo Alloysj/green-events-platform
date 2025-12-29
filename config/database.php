@@ -98,6 +98,36 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'system' => [
+            'driver' => env('SYSTEM_DB_CONNECTION', 'pgsql'),
+            'url' => env('SYSTEM_DB_URL', env('DB_URL')),
+            'host' => env('SYSTEM_DB_HOST', env('DB_HOST', '127.0.0.1')),
+            'port' => env('SYSTEM_DB_PORT', env('DB_PORT', '5432')),
+            'database' => env('SYSTEM_DB_DATABASE', env('DB_DATABASE', 'laravel')),
+            'username' => env('SYSTEM_DB_USERNAME', env('DB_USERNAME', 'root')),
+            'password' => env('SYSTEM_DB_PASSWORD', env('DB_PASSWORD', '')),
+            'charset' => env('SYSTEM_DB_CHARSET', env('DB_CHARSET', 'utf8')),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => env('SYSTEM_DB_SEARCH_PATH', 'public'),
+            'sslmode' => env('SYSTEM_DB_SSLMODE', 'prefer'),
+        ],
+
+        'tenant' => [
+            'driver' => env('TENANT_DB_CONNECTION', env('DB_CONNECTION', 'pgsql')),
+            'url' => env('TENANT_DB_URL'),
+            'host' => env('TENANT_DB_HOST', env('DB_HOST', '127.0.0.1')),
+            'port' => env('TENANT_DB_PORT', env('DB_PORT', '5432')),
+            'database' => env('TENANT_DB_DATABASE'),
+            'username' => env('TENANT_DB_USERNAME', env('DB_USERNAME', 'root')),
+            'password' => env('TENANT_DB_PASSWORD', env('DB_PASSWORD', '')),
+            'charset' => env('TENANT_DB_CHARSET', env('DB_CHARSET', 'utf8')),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => env('TENANT_DB_SEARCH_PATH', 'public'),
+            'sslmode' => env('TENANT_DB_SSLMODE', 'prefer'),
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
