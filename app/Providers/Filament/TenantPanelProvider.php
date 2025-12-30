@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Tenant\Pages\Dashboard;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -17,6 +18,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomainOrSubdomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -44,8 +46,9 @@ class TenantPanelProvider extends PanelProvider
                 FilamentInfoWidget::class,
             ])
             ->middleware([
-                InitializeTenancyByDomainOrSubdomain::class,
-                PreventAccessFromCentralDomains::class,
+                ...(app()->environment('local')
+                    ? [InitializeTenancyByDomain::class]
+                    : [InitializeTenancyByDomainOrSubdomain::class, PreventAccessFromCentralDomains::class]),
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
@@ -60,11 +63,10 @@ class TenantPanelProvider extends PanelProvider
                 Authenticate::class,
             ]);
 
-        if (! empty($domain)) {
+        if (! empty($domain) && ! app()->environment('local')) {
             $panel->domain('{tenant}.'.$domain);
         }
 
         return $panel;
     }
 }
-use App\Filament\Tenant\Pages\Dashboard;

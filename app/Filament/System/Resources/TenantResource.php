@@ -7,7 +7,7 @@ use App\Filament\System\Resources\TenantResource\Pages\ListTenants;
 use App\Models\Tenant;
 use Filament\Forms;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
+use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -19,10 +19,9 @@ class TenantResource extends Resource
 
     protected static ?string $navigationLabel = 'Tenants';
 
-    public static function form(Schema $schema): Schema
+    public static function form(Form $form): Form
     {
-        return $schema
-            ->schema([
+        return $form->schema([
                 Forms\Components\TextInput::make('id')
                     ->label('Tenant ID')
                     ->required()
@@ -84,3 +83,7 @@ class TenantResource extends Resource
         return $user?->hasAnyRole(\App\Support\Roles::systemRoles()) ?? false;
     }
 }
+
+
+
+

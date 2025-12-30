@@ -53,7 +53,7 @@ class SystemPanelProvider extends PanelProvider
                 Authenticate::class,
             ]);
 
-        if (! empty($domain)) {
+        if (! empty($domain) && ! app()->environment('local')) {
             $panel->domain('system.'.$domain);
         }
 
