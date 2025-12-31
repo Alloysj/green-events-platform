@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Stancl\Tenancy\Database\Concerns\UsesTenantConnection;
+use Stancl\Tenancy\Database\Concerns\TenantConnection;
 
 class AuditLog extends Model
 {
-    use UsesTenantConnection;
+    use TenantConnection;
 
     protected $fillable = [
         'user_id',
@@ -21,3 +21,4 @@ class AuditLog extends Model
         'metadata' => 'array',
     ];
 }
+

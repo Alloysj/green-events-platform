@@ -19,6 +19,13 @@ class VendorResource extends Resource
 
     protected static ?string $navigationLabel = 'Vendors';
 
+    protected static ?string $navigationGroup = 'Operations';
+
+    public static function canViewAny(): bool
+    {
+        return auth()->check();
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema([

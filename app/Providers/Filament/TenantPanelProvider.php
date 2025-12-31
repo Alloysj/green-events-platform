@@ -3,6 +3,10 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Tenant\Pages\Dashboard;
+use App\Filament\Tenant\Resources\EvidenceArtifactResource;
+use App\Filament\Tenant\Resources\EventResource;
+use App\Filament\Tenant\Resources\ReportResource;
+use App\Filament\Tenant\Resources\VendorResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -36,6 +40,12 @@ class TenantPanelProvider extends PanelProvider
                 'primary' => Color::Emerald,
             ])
             ->discoverResources(in: app_path('Filament/Tenant/Resources'), for: 'App\Filament\Tenant\Resources')
+            ->resources([
+                EventResource::class,
+                VendorResource::class,
+                EvidenceArtifactResource::class,
+                ReportResource::class,
+            ])
             ->discoverPages(in: app_path('Filament/Tenant/Pages'), for: 'App\Filament\Tenant\Pages')
             ->pages([
                 Dashboard::class,

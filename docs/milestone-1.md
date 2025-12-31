@@ -101,3 +101,4 @@ Tenant DB migrations (database/migrations/tenant):
 - Project moved from OneDrive to `C:\Users\Alois\Documents\green-co` to avoid file locks.
 - PostgreSQL PDO driver required for system and tenant DBs.
 
+
