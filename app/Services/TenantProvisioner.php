@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Stancl\Tenancy\Database\DatabaseManager;
 
 class TenantProvisioner
@@ -63,6 +64,12 @@ class TenantProvisioner
                 'name' => Roles::TENANT_ADMIN,
                 'guard_name' => 'web',
             ]);
+
+            // create vendor permissions and give them to tenant admin by default
+            Permission::firstOrCreate(['name' => 'VENDORS:READ', 'guard_name' => 'web']);
+            Permission::firstOrCreate(['name' => 'VENDORS:WRITE', 'guard_name' => 'web']);
+            $role->givePermissionTo(['VENDORS:READ', 'VENDORS:WRITE']);
+
             $user->assignRole($role);
         } finally {
             $databaseManager->reconnectToCentral();
