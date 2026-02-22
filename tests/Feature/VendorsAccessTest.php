@@ -128,7 +128,7 @@ class VendorsAccessTest extends TestCase
 
         tenancy()->initialize($tenant);
 
-        Artisan::call('migrate', [
+        Artisan::call('migrate:fresh', [
             '--path' => database_path('migrations/tenant'),
             '--realpath' => true,
             '--force' => true,

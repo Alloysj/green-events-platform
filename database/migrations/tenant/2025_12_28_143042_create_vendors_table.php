@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('category_id')->nullable()->constrained('vendor_categories')->cascadeOnDelete();
             $table->string('contact_name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('email')->nullable()->index();
+            $table->string('phone')->nullable()->index();
             $table->text('address')->nullable();
             $table->text('notes')->nullable();
             $table->boolean('is_active')->default(true);

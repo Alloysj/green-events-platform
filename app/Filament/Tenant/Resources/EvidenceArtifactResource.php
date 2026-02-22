@@ -10,6 +10,7 @@ use App\Models\Domains\Evidence\EvidenceArtifact;
 use App\Models\Domains\Reporting\Report;
 use App\Models\Domains\Vendors\ProcurementArtifact;
 use App\Models\Domains\Vendors\Vendor;
+use App\Models\Domains\Vendors\VendorComplianceProfile;
 use App\Models\Domains\Waste\WastePlan;
 use App\Support\Roles;
 use Filament\Forms;
@@ -160,6 +161,7 @@ class EvidenceArtifactResource extends Resource
         return [
             Event::class => 'Event',
             Vendor::class => 'Vendor',
+            VendorComplianceProfile::class => 'Vendor Compliance Profile',
             ProcurementArtifact::class => 'Procurement Artifact',
             WastePlan::class => 'Waste Plan',
             Report::class => 'Report',

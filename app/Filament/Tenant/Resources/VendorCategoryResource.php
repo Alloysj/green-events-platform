@@ -108,7 +108,7 @@ class VendorCategoryResource extends Resource
         return self::canAccess(true);
     }
 
-    private static function canAccess(bool $write = false): bool
+    public static function canAccess(bool $write = false): bool
     {
         $user = auth()->user();
 

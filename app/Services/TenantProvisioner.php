@@ -68,7 +68,8 @@ class TenantProvisioner
             // create vendor permissions and give them to tenant admin by default
             Permission::firstOrCreate(['name' => 'VENDORS:READ', 'guard_name' => 'web']);
             Permission::firstOrCreate(['name' => 'VENDORS:WRITE', 'guard_name' => 'web']);
-            $role->givePermissionTo(['VENDORS:READ', 'VENDORS:WRITE']);
+            Permission::firstOrCreate(['name' => 'VENDORS:APPROVE', 'guard_name' => 'web']);
+            $role->givePermissionTo(['VENDORS:READ', 'VENDORS:WRITE', 'VENDORS:APPROVE']);
 
             $user->assignRole($role);
         } finally {
