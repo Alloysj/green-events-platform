@@ -20,7 +20,7 @@ class VendorCategoryResource extends Resource
 {
     protected static ?string $model = VendorCategory::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
 
     protected static ?string $navigationLabel = 'Vendor Categories';
 

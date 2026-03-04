@@ -6,6 +6,7 @@ use App\Filament\Tenant\Pages\Dashboard;
 use App\Filament\Tenant\Resources\EvidenceArtifactResource;
 use App\Filament\Tenant\Resources\EventResource;
 use App\Filament\Tenant\Resources\ReportResource;
+use App\Filament\Tenant\Resources\VendorCategoryResource;
 use App\Filament\Tenant\Resources\VendorResource;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -43,6 +44,7 @@ class TenantPanelProvider extends PanelProvider
             ->resources([
                 EventResource::class,
                 VendorResource::class,
+                VendorCategoryResource::class,
                 EvidenceArtifactResource::class,
                 ReportResource::class,
             ])

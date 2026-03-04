@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('vendor_compliance_profiles')) {
+            return;
+        }
+
         Schema::create('vendor_compliance_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('vendor_id')->unique()->constrained('vendors')->cascadeOnDelete();
